@@ -1,53 +1,123 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Vibration } from 'react-native';
-import {useState} from 'react';
+import { useState } from 'react';
 import { Entypo } from '@expo/vector-icons';
+import { rpn } from './components/jrpncalc/rpn';
 
 export default function App() {
+  
   const [darkMode, setDarkMode] = useState(false);
   const [currentNumber, setCurrentNumber] = useState('');
   const [lastNumber, setLastNumber] = useState('');
-
-  const buttons = ['C', 'DEL', '/', 7, 8, 9, '*', 4, 5, 6, '-', 1, 2, 3, '+', 0, '.', '=']
+  
+  const buttons = [
+    {
+      "symbol": "C",
+      "value": "C"
+    },
+    {
+      "symbol": "\u232B",
+      "value": "DEL"
+    },
+    {
+      "symbol": "\u00F7",
+      "value": "/"
+    },
+    {
+      "symbol": "7",
+      "value": 7
+    },
+    {
+      "symbol": "8",
+      "value": 8
+    },
+    {
+      "symbol": "9",
+      "value": 9
+    },
+    {
+      "symbol": "\u00D7",
+      "value": "*"
+    },
+    {
+      "symbol": "4",
+      "value": 4
+    },
+    {
+      "symbol": "5",
+      "value": 5
+    },
+    {
+      "symbol": "6",
+      "value": 6
+    },
+    {
+      "symbol": "-",
+      "value": "-"
+    },
+    {
+      "symbol": "1",
+      "value": 1
+    },
+    {
+      "symbol": "2",
+      "value": 2
+    },
+    {
+      "symbol": "3",
+      "value": 3
+    },
+    {
+      "symbol": "+",
+      "value": "+"
+    },
+    {
+      "symbol": "0",
+      "value": 0
+    },
+    {
+      "symbol": ".",
+      "value": "."
+    },
+    {
+      "symbol": "\u005F",
+      "value": " "
+    },
+    {
+      "symbol": "=",
+      "value": "="
+    }
+  ];
 
   function calculator() {
-    
-    let lastArr = currentNumber[currentNumber.length-1];
-    
-    if(lastArr === '/' || lastArr === '*' || lastArr === '-' || lastArr === '+' || lastArr === '.') {
-      setCurrentNumber(currentNumber)
-      return
-    }
-    else {
-      let result = eval(currentNumber).toString();
-      setCurrentNumber(result)
-      return
-    }
+    let result = rpn(currentNumber).toString();
+    setCurrentNumber(result)
+    return
   }
 
   function handleInput(buttonPressed) {
     if(buttonPressed  === '+' || buttonPressed === '-' || buttonPressed === '*' || buttonPressed === '/') {
-      Vibration.vibrate(35);
+      Vibration.vibrate(5);
       setCurrentNumber(currentNumber + buttonPressed)
       return
     }
     else if (buttonPressed === 1 || buttonPressed === 2 || buttonPressed === 3 || buttonPressed === 4 || buttonPressed === 5 ||
-            buttonPressed === 6 || buttonPressed === 7 || buttonPressed === 8 || buttonPressed === 9 || buttonPressed === 0 || buttonPressed === '.' ) {
-      Vibration.vibrate(35);
+            buttonPressed === 6 || buttonPressed === 7 || buttonPressed === 8 || buttonPressed === 9 || buttonPressed === 0 || buttonPressed === '.' || buttonPressed === ' ') {
+      Vibration.vibrate(5);
     }
     switch(buttonPressed) {
       case 'DEL':
-        Vibration.vibrate(35);
+        Vibration.vibrate(5);
         setCurrentNumber(currentNumber.substring(0, (currentNumber.length - 1)))
         return
       case 'C':
-        Vibration.vibrate(35);
+        Vibration.vibrate(5);
         setLastNumber('')
         setCurrentNumber('')
         return
       case '=':
-        Vibration.vibrate(35);
-        setLastNumber(currentNumber + '=')
+        Vibration.vibrate(5);
+        setLastNumber(currentNumber)
         calculator()
         return
     }
@@ -65,13 +135,13 @@ export default function App() {
     resultText: {
       maxHeight: 45,
       color: '#00b9d6',
-      margin: 15,
+      margin: 40,
       fontSize: 35,
     },
     historyText: {
       color: darkMode ? '#B5B7BB' : '#7c7c7c',
       fontSize: 20,
-      marginRight: 10,
+      marginRight: 40,
       alignSelf: 'flex-end',
     },
     themeButton: {
@@ -103,7 +173,7 @@ export default function App() {
       color: darkMode ? '#b5b7bb' : '#7c7c7c',
       fontSize: 28,
     }
-  })
+  });
     
   return (
     <View>
@@ -116,31 +186,34 @@ export default function App() {
       </View>
       <View style={styles.buttons}>
         {buttons.map((button) =>
-          button === '=' || button === '/' || button === '*' || button === '-' || button === '+' ?
-          <TouchableOpacity key={button} style={[styles.button, {backgroundColor: '#00b9d6'} ]} onPress={() => handleInput(button)}>
-            <Text style={[styles.textButton, {color: 'white', fontSize: 28} ]}>{button}</Text>
+          button.value === '=' || button.value === '/' || button.value === '*' || button.value === '-' || button.value === '+' ?
+          <TouchableOpacity key={button.value} style={[styles.button, {backgroundColor: '#00b9d6'} ]} onPress={() => handleInput(button.value)}>
+            <Text style={[styles.textButton, {color: 'white', fontSize: 28} ]}>{button.symbol}</Text>
           </TouchableOpacity>
+          /*
           :
           button === 0 ?
-          <TouchableOpacity key={button} style={[styles.button, {backgroundColor: typeof(button) === 'number' ? darkMode ? '#303946' : '#fff' : darkMode === true ? '#414853' : '#ededed', minWidth: '36%'} ]} onPress={() => handleInput(button)}>
+          <TouchableOpacity key={button} style={[styles.button, {backgroundColor: typeof(button) === 'number' ? darkMode ? '#303946' : '#fff' : darkMode === true ? '#414853' : '#ededed', minWidth: '24%'} ]} onPress={() => handleInput(button)}>
             <Text style={styles.textButton}>{button}</Text>
           </TouchableOpacity>
+          */
           :
-          button === '.' || button === 'DEL' ?
-          <TouchableOpacity key={button} style={[styles.button, {backgroundColor: button === '.' ? darkMode ? '#303946' : '#fff' : darkMode === true ? '#414853' : '#ededed', minWidth: '37%'} ]} onPress={() => handleInput(button)}>
-            <Text style={styles.textButton}>{button}</Text>
+          button.value === 'DEL' ?
+          <TouchableOpacity key={button.value} style={[styles.button, {backgroundColor: button.value === '.' ? darkMode ? '#303946' : '#fff' : darkMode === true ? '#414853' : '#ededed', minWidth: '37%'} ]} onPress={() => handleInput(button.value)}>
+            <Text style={styles.textButton}>{button.symbol}</Text>
           </TouchableOpacity>
           :
-          button === 'C' ?
-          <TouchableOpacity key={button} style={[styles.button, {backgroundColor: typeof(button) === 'number' ? darkMode ? '#303946' : '#fff' : darkMode === true ? '#414853' : '#ededed', minWidth: '36%'} ]} onPress={() => handleInput(button)}>
-            <Text style={styles.textButton}>{button}</Text>
+          button.value === 'C' ?
+          <TouchableOpacity key={button.value} style={[styles.button, {backgroundColor: typeof(button.value) === 'number' ? darkMode ? '#303946' : '#fff' : darkMode === true ? '#414853' : '#ededed', minWidth: '36%'} ]} onPress={() => handleInput(button.value)}>
+            <Text style={styles.textButton}>{button.symbol}</Text>
           </TouchableOpacity>
           :
-          <TouchableOpacity key={button} style={[styles.button, {backgroundColor: typeof(button) === 'number' ? darkMode ? '#303946' : '#fff' : darkMode === true ? '#414853' : '#ededed' } ]} onPress={() => handleInput(button)}>
-            <Text style={styles.textButton}>{button}</Text>
+          <TouchableOpacity key={button.value} style={[styles.button, {backgroundColor: typeof(button.value) === 'number' ? darkMode ? '#303946' : '#fff' : darkMode === true ? '#414853' : '#ededed' } ]} onPress={() => handleInput(button.value)}>
+            <Text style={styles.textButton}>{button.symbol}</Text>
           </TouchableOpacity>
         )}
       </View>
     </View>
   );
+  
 }

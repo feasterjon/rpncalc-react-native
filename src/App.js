@@ -125,21 +125,24 @@ export default function App() {
   }
   
   const styles = StyleSheet.create({
+    container: {
+      flexDirection: 'column'
+    },
     results: {
-      backgroundColor: darkMode ? '#282f3b' : '#f5f5f5',
+      backgroundColor: darkMode ? '#2a2b2f' : '#f5f6f8',
       maxWidth: '100%',
-      minHeight: '35%',
+      minHeight: '36%',
       alignItems: 'flex-end',
       justifyContent: 'flex-end',
     },
     resultText: {
       maxHeight: 45,
-      color: '#00b9d6',
+      color: '#59a7e5',
       margin: 40,
       fontSize: 35,
     },
     historyText: {
-      color: darkMode ? '#B5B7BB' : '#7c7c7c',
+      color: darkMode ? '#8c8d8f' : '#6e6e6e',
       fontSize: 20,
       marginRight: 40,
       alignSelf: 'flex-end',
@@ -148,7 +151,7 @@ export default function App() {
       alignSelf: 'flex-start',
       bottom: '5%',
       margin: 15,
-      backgroundColor: darkMode ? '#7b8084' : '#e5e5e5',
+      backgroundColor: darkMode ? '#464749' : '#dfe4e8',
       alignItems: 'center',
       justifyContent: 'center',
       width: 50,
@@ -157,12 +160,13 @@ export default function App() {
     },
     buttons: {
       width: '100%',
-      height: '35%',
+      height: '34%',
       flexDirection: 'row',
       flexWrap: 'wrap',
     },
     button: {
-      borderColor: darkMode ? '#3f4d5b' : '#e5e5e5',
+      borderColor: darkMode ? '#6e6e6e' : '#dfe4e8',
+      borderWidth: 0.375,
       alignItems: 'center',
       justifyContent: 'center',
       minWidth: '24%',
@@ -170,45 +174,43 @@ export default function App() {
       flex: 2,
     },
     textButton: {
-      color: darkMode ? '#b5b7bb' : '#7c7c7c',
+      color: darkMode ? '#8c8d8f' : '#6e6e6e',
       fontSize: 28,
     }
   });
     
   return (
-    <View>
+    <View style={styles.container}>
       <View style={styles.results}>
         <TouchableOpacity style={styles.themeButton}>
-          <Entypo name={darkMode ? 'light-up' : 'moon'} size={24} color={darkMode ? 'white' : 'black'} onPress={() => darkMode ? setDarkMode(false) : setDarkMode(true)}/>
+          <Entypo name={darkMode ? 'light-up' : 'moon'} size={24} color={darkMode ? '#fafafa' : '#6e6e6e'} onPress={() => darkMode ? setDarkMode(false) : setDarkMode(true)}/>
         </TouchableOpacity>
         <Text style={styles.historyText}>{lastNumber}</Text>
         <Text style={styles.resultText}>{currentNumber}</Text>
       </View>
       <View style={styles.buttons}>
         {buttons.map((button) =>
-          button.value === '=' || button.value === '/' || button.value === '*' || button.value === '-' || button.value === '+' ?
-          <TouchableOpacity key={button.value} style={[styles.button, {backgroundColor: '#00b9d6'} ]} onPress={() => handleInput(button.value)}>
-            <Text style={[styles.textButton, {color: 'white', fontSize: 28} ]}>{button.symbol}</Text>
+          button.value === ' ' || button.value === '/' || button.value === '*' || button.value === '-' || button.value === '+' ?
+          <TouchableOpacity key={button.value} style={[styles.button, {backgroundColor: darkMode === true ? '#1a1b1d' : '#fafafa'} ]} onPress={() => handleInput(button.value)}>
+            <Text style={[styles.textButton, {color: '#59a7e5', fontSize: 28} ]}>{button.symbol}</Text>
           </TouchableOpacity>
-          /*
           :
-          button === 0 ?
-          <TouchableOpacity key={button} style={[styles.button, {backgroundColor: typeof(button) === 'number' ? darkMode ? '#303946' : '#fff' : darkMode === true ? '#414853' : '#ededed', minWidth: '24%'} ]} onPress={() => handleInput(button)}>
-            <Text style={styles.textButton}>{button}</Text>
+          button.value === '=' ?
+          <TouchableOpacity key={button.value} style={[styles.button, {backgroundColor: '#59a7e5'} ]} onPress={() => handleInput(button.value)}>
+            <Text style={[styles.textButton, {color: '#ffffff', fontSize: 28} ]}>{button.symbol}</Text>
           </TouchableOpacity>
-          */
           :
           button.value === 'DEL' ?
-          <TouchableOpacity key={button.value} style={[styles.button, {backgroundColor: button.value === '.' ? darkMode ? '#303946' : '#fff' : darkMode === true ? '#414853' : '#ededed', minWidth: '37%'} ]} onPress={() => handleInput(button.value)}>
-            <Text style={styles.textButton}>{button.symbol}</Text>
+          <TouchableOpacity key={button.value} style={[styles.button, {backgroundColor: button.value === '.' ? darkMode ? '#1a1b1d' : '#fafafa' : darkMode === true ? '#1a1b1d' : '#fafafa', minWidth: '37%'} ]} onPress={() => handleInput(button.value)}>
+            <Text style={[styles.textButton, {color: '#59a7e5', fontSize: 28} ]}>{button.symbol}</Text>
           </TouchableOpacity>
           :
           button.value === 'C' ?
-          <TouchableOpacity key={button.value} style={[styles.button, {backgroundColor: typeof(button.value) === 'number' ? darkMode ? '#303946' : '#fff' : darkMode === true ? '#414853' : '#ededed', minWidth: '36%'} ]} onPress={() => handleInput(button.value)}>
-            <Text style={styles.textButton}>{button.symbol}</Text>
+          <TouchableOpacity key={button.value} style={[styles.button, {backgroundColor: typeof(button.value) === 'number' ? darkMode ? '#1a1b1d' : '#fafafa' : darkMode === true ? '#1a1b1d' : '#fafafa', minWidth: '36%'} ]} onPress={() => handleInput(button.value)}>
+            <Text style={[styles.textButton, {color: '#e37f60', fontSize: 28} ]}>{button.symbol}</Text>
           </TouchableOpacity>
           :
-          <TouchableOpacity key={button.value} style={[styles.button, {backgroundColor: typeof(button.value) === 'number' ? darkMode ? '#303946' : '#fff' : darkMode === true ? '#414853' : '#ededed' } ]} onPress={() => handleInput(button.value)}>
+          <TouchableOpacity key={button.value} style={[styles.button, {backgroundColor: typeof(button.value) === 'number' ? darkMode ? '#1a1b1d' : '#fafafa' : darkMode === true ? '#1a1b1d' : '#fafafa' } ]} onPress={() => handleInput(button.value)}>
             <Text style={styles.textButton}>{button.symbol}</Text>
           </TouchableOpacity>
         )}

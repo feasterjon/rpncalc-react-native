@@ -1,14 +1,14 @@
 /*
 Title: RPN Calculator
 Author: Jonathan Feaster, JonFeaster.com
-Date: 2021-12-08
+Date: 2021-12-09
 */
 
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Vibration } from 'react-native';
 import { useState } from 'react';
 import { Entypo } from '@expo/vector-icons';
-import { rpn } from './components/jrpncalc/rpn';
+import { RPN } from './components/jrpncalc';
 
 export default function App() {
   
@@ -99,7 +99,7 @@ export default function App() {
     let expression = currentNumber.toString();
     expression = expression.replace(new RegExp('\u00D7', 'g'), '*');
     expression = expression.replace(new RegExp('\u00F7', 'g'), '/');
-    let result = rpn(expression).toString();
+    let result = RPN(expression).toString();
     setCurrentNumber(result);
     return
   }

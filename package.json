@@ -1,5 +1,5 @@
 {
-  "name": "RPN Calculator",
+  "name": "rpncalc",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {

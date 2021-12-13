@@ -1,4 +1,4 @@
-package com.rpncalc;
+package com.rpncalculator;
 
 import android.os.Bundle;
 

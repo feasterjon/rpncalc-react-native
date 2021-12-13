@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "rpncalc",
-    "slug": "rpncalc",
+    "name": "RPNCalculator",
+    "slug": "RPNCalculator",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
     ]
   },
-  "name": "RPN Calculator"
+  "name": "RPNCalculator"
 }

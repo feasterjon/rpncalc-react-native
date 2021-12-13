@@ -1,7 +1,7 @@
 /*
 Title: RPN Calculator
 Author: Jonathan Feaster, JonFeaster.com
-Date: 2021-12-09
+Date: 2021-12-13
 */
 
 import React from 'react';
@@ -151,13 +151,17 @@ export default function App() {
     resultText: {
       maxHeight: 45,
       color: '#59a7e5',
-      margin: 40,
+      marginTop: 10,
+      marginRight: 20,
+      marginBottom: 10,
+      marginLeft: 40,
       fontSize: 35
     },
     historyText: {
       color: darkMode ? '#8c8d8f' : '#6e6e6e',
       fontSize: 20,
-      marginRight: 40,
+      marginTop: 50,
+      marginRight: 20,
       alignSelf: 'flex-end'
     },
     themeButton: {

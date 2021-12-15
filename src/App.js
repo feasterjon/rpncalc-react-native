@@ -1,7 +1,7 @@
 /*
 Title: RPN Calculator
 Author: Jonathan Feaster, JonFeaster.com
-Date: 2021-12-13
+Date: 2021-12-15
 */
 
 import React from 'react';
@@ -140,35 +140,51 @@ export default function App() {
       flexDirection: 'column',
       flex: 1
     },
-    results: {
-      backgroundColor: darkMode ? '#2a2b2f' : '#f5f6f8',
-      color: darkMode ? '#8c8d8f' : '#6e6e6e',
-      maxWidth: '100%',
+    top: {
+      flexDirection: 'column',
+      flex: 1
+    },
+    row: {
+      flexDirection: 'row',
+      flex: 1
+    },
+    theme: {
+      alignItems: 'flex-start',
+      justifyContent: 'flex-start',
+      flex: 1
+    },
+    history: {
+      alignItems: 'flex-end',
+      justifyContent: 'flex-end',
+      flex: 2
+    },
+    result: {
       alignItems: 'flex-end',
       justifyContent: 'flex-end',
       flex: 1
     },
     resultText: {
-      maxHeight: 45,
       color: '#59a7e5',
-      marginTop: 10,
-      marginRight: 20,
+      marginRight: 15,
       marginBottom: 10,
-      marginLeft: 40,
-      fontSize: 35
+      marginLeft: 15,
+      fontSize: 35,
+      alignSelf: 'flex-end',
+      flexWrap: 'wrap'
     },
     historyText: {
       color: darkMode ? '#8c8d8f' : '#6e6e6e',
       fontSize: 20,
-      marginTop: 50,
-      marginRight: 20,
-      alignSelf: 'flex-end'
+      marginRight: 15,
+      marginLeft: 15,
+      alignSelf: 'flex-end',
+      flexWrap: 'wrap'
     },
     themeButton: {
+      backgroundColor: darkMode ? '#464749' : '#dfe4e8',
       alignSelf: 'flex-start',
       marginTop: 15,
       marginLeft: 15,
-      backgroundColor: darkMode ? '#464749' : '#dfe4e8',
       alignItems: 'center',
       justifyContent: 'center',
       width: 50,
@@ -176,11 +192,12 @@ export default function App() {
       borderRadius: 25
     },    
     keypad: {
+      backgroundColor: darkMode ? '#386e98' : '#d1e1f5',
       flex: 2
     },
     buttons: {
       width: '100%',
-      height: '38%',
+      height: '37%',
       flexDirection: 'row',
       flexWrap: 'wrap'
     },
@@ -191,7 +208,7 @@ export default function App() {
       justifyContent: 'center',
       minWidth: '24%',
       minHeight: '54%',
-      flex: 2
+      flex: 1
     },
     textButton: {
       color: darkMode ? '#8c8d8f' : '#6e6e6e',
@@ -201,12 +218,20 @@ export default function App() {
     
   return (
     <View style={styles.container}>
-      <View style={styles.results}>
-        <TouchableOpacity style={styles.themeButton}>
-          <Entypo name={darkMode ? 'light-up' : 'moon'} size={24} color={darkMode ? '#fafafa' : '#6e6e6e'} onPress={() => darkMode ? setDarkMode(false) : setDarkMode(true)}/>
-        </TouchableOpacity>
-        <Text style={styles.historyText}>{lastNumber}</Text>
-        <Text style={styles.resultText}>{currentNumber}</Text>
+      <View style={styles.top}>
+        <View style={styles.row}>
+          <View style={styles.theme}>
+            <TouchableOpacity style={styles.themeButton}>
+              <Entypo name={darkMode ? 'light-up' : 'moon'} size={24} color={darkMode ? '#fafafa' : '#6e6e6e'} onPress={() => darkMode ? setDarkMode(false) : setDarkMode(true)}/>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.history}>
+            <Text style={styles.historyText}>{lastNumber}</Text>
+          </View>
+        </View>
+        <View style={styles.result}>
+          <Text style={styles.resultText}>{currentNumber}</Text>
+        </View>
       </View>
       <View style={styles.keypad}>
         <View style={styles.buttons}>

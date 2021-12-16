@@ -1,11 +1,28 @@
 {
   "expo": {
     "name": "RPNCalculator",
-    "slug": "RPNCalculator",
-    "version": "1.1.0",
+    "slug": "rpncalc",
+    "version": "1.2.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "description": "A Reverse Polish Notation (RPN) calculator"
   },
-  "name": "RPNCalculator"
+  "name": "RPNCalculator",
+  "android": {
+    "defaultConfig": {
+      "versionCode": 2,
+      "versionName": "1.2.0"
+    },
+    "productFlavors": {
+      "demo": {
+        "versionCode": 2,
+        "versionName": "1.2.0-demo"
+      },
+      "full": {
+        "versionCode": 1,
+        "versionName": "1.0.0"
+      }
+    }
+  }
 }

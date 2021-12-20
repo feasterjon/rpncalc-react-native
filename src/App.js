@@ -1,11 +1,11 @@
 /*
 Title: RPN Calculator
 Author: Jonathan Feaster, JonFeaster.com
-Date: 2021-12-15
+Date: 2021-12-20
 */
 
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Vibration } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Vibration, Alert } from 'react-native';
 import { useState } from 'react';
 import { Entypo } from '@expo/vector-icons';
 import { RPN } from './components/jrpncalc';
@@ -97,9 +97,7 @@ export default function App() {
 
   function calc() {
     let expression = currentNumber.toString();
-    expression = expression.replace(new RegExp('\u00D7', 'g'), '*');
-    expression = expression.replace(new RegExp('\u00F7', 'g'), '/');
-    let result = RPN(expression).toString();
+    let result = RPN(formatExpression(expression)).toString();
     setCurrentNumber(result);
     return
   }
@@ -112,6 +110,9 @@ export default function App() {
     }
     else if (buttonPressed === 1 || buttonPressed === 2 || buttonPressed === 3 || buttonPressed === 4 || buttonPressed === 5 ||
             buttonPressed === 6 || buttonPressed === 7 || buttonPressed === 8 || buttonPressed === 9 || buttonPressed === 0 || buttonPressed === '.' || buttonPressed === ' ') {
+      if (buttonPressed !== ' ' && validateNumbers(currentNumber + buttonPressed) === false) {
+        return
+      }
       Vibration.vibrate(5);
     }
     switch(buttonPressed) {
@@ -131,6 +132,56 @@ export default function App() {
         return
     }
     setCurrentNumber(currentNumber + buttonPressed);
+  }
+  
+  function validateNumbers(expression) {
+    let output = true;
+    expression = expression.toString();
+    let numbers = expression.split(' ');
+    numbers.forEach((number) => {
+      let numFragments = number.split('.');
+      if (numFragments[0]) {
+        if (numFragments[0].length > 15) {
+          output = false;
+          Alert.alert(
+            null,
+            'Maximum number of digits (15) exceeded.'
+          );
+          return output;
+        }
+      }
+      if (numFragments[1]) {
+        if (numFragments[1].length > 10) {
+          output = false;
+          Alert.alert(
+            null,
+            'Maximum number of digits after decimal point (10) exceeded.'
+          );
+          return output;
+        }
+      }
+    });
+    return output;
+  }
+  
+  function formatNumbers(expression) {
+    let output = '';
+    expression = expression.toString();
+    let numbers = expression.split(' ');
+    numbers.forEach((number) => {
+    let numFragments = number.split('.');
+      numFragments[0] = numFragments[0].replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+      output += ' ' + numFragments.join('.');
+    });
+    return output;
+  }
+  
+  function formatExpression(expression) {
+    let output = expression.toString();
+    output = output.replace(new RegExp(',', 'g'), '');
+    output = output.replace(new RegExp('\u00D7', 'g'), '*');
+    output = output.replace(new RegExp('\u00F7', 'g'), '/');
+    return output;
   }
   
   const styles = StyleSheet.create({
@@ -226,11 +277,11 @@ export default function App() {
             </TouchableOpacity>
           </View>
           <View style={styles.history}>
-            <Text style={styles.historyText}>{lastNumber}</Text>
+            <Text style={styles.historyText}>{formatNumbers(lastNumber)}</Text>
           </View>
         </View>
         <View style={styles.result}>
-          <Text style={styles.resultText}>{currentNumber}</Text>
+          <Text style={styles.resultText}>{formatNumbers(currentNumber)}</Text>
         </View>
       </View>
       <View style={styles.keypad}>

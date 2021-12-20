@@ -2,27 +2,39 @@
   "expo": {
     "name": "RPNCalculator",
     "slug": "rpncalc",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "assetBundlePatterns": [
       "**/*"
     ],
-    "description": "A Reverse Polish Notation (RPN) calculator"
+    "description": "A Reverse Polish Notation (RPN) calculator",
+    "primaryColor": "#ffffff",
+    "androidStatusBarColor": "#59a7e5",
+    "icon": "./assets/images/icon.png",
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#000000"
+    }
   },
   "name": "RPNCalculator",
   "android": {
     "defaultConfig": {
-      "versionCode": 2,
-      "versionName": "1.2.0"
+      "versionCode": 3,
+      "versionName": "1.3.0"
     },
     "productFlavors": {
       "demo": {
-        "versionCode": 2,
-        "versionName": "1.2.0-demo"
+        "versionCode": 3,
+        "versionName": "1.3.0-demo"
       },
       "full": {
         "versionCode": 1,
         "versionName": "1.0.0"
       }
+    },
+    "adaptiveIcon": { 
+      "foregroundImage": "./assets/images/icon2.png",
+      "backgroundColor": "#000000"
     }
   }
 }

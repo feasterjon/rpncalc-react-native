@@ -8,8 +8,7 @@
     ],
     "description": "A Reverse Polish Notation (RPN) calculator",
     "primaryColor": "#ffffff",
-    "androidStatusBarColor": "#59a7e5",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/icon2.png",
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "contain",

@@ -13,6 +13,7 @@
       }
     },
     "preview": {
+      "extends": "production",
       "distribution": "internal"
     },
     "production": {}

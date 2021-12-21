@@ -2,7 +2,7 @@
   "expo": {
     "name": "RPNCalculator",
     "slug": "rpncalc",
-    "version": "1.3.0",
+    "version": "1.4.0",
     "assetBundlePatterns": [
       "**/*"
     ],
@@ -17,14 +17,15 @@
   },
   "name": "RPNCalculator",
   "android": {
+    "package": "com.jonfeaster.rpncalc",
     "defaultConfig": {
-      "versionCode": 3,
-      "versionName": "1.3.0"
+      "versionCode": 4,
+      "versionName": "1.4.0"
     },
     "productFlavors": {
       "demo": {
-        "versionCode": 3,
-        "versionName": "1.3.0-demo"
+        "versionCode": 4,
+        "versionName": "1.4.0-demo"
       },
       "full": {
         "versionCode": 1,

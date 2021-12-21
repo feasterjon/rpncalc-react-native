@@ -1,7 +1,7 @@
 /*
 Title: RPN Calculator
 Author: Jonathan Feaster, JonFeaster.com
-Date: 2021-12-20
+Date: 2021-12-21
 */
 
 import React from 'react';
@@ -145,7 +145,10 @@ export default function App() {
           output = false;
           Alert.alert(
             null,
-            'Maximum number of digits (15) exceeded.'
+            'Maximum number of digits (15) exceeded.',
+            null,
+            {cancelable: true}
+            
           );
           return output;
         }
@@ -155,7 +158,9 @@ export default function App() {
           output = false;
           Alert.alert(
             null,
-            'Maximum number of digits after decimal point (10) exceeded.'
+            'Maximum number of digits after decimal point (10) exceeded.',
+            null,
+            {cancelable: true}
           );
           return output;
         }

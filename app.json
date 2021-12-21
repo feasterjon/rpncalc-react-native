@@ -2,13 +2,14 @@
   "expo": {
     "name": "RPNCalculator",
     "slug": "rpncalc",
-    "version": "1.4.0",
+    "version": "1.9.0",
     "assetBundlePatterns": [
       "**/*"
     ],
     "description": "A Reverse Polish Notation (RPN) calculator",
+    "orientation": "portrait",
     "primaryColor": "#ffffff",
-    "icon": "./assets/images/icon2.png",
+    "icon": "./assets/images/icon.png",
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "contain",
@@ -17,15 +18,14 @@
   },
   "name": "RPNCalculator",
   "android": {
-    "package": "com.jonfeaster.rpncalc",
     "defaultConfig": {
-      "versionCode": 4,
-      "versionName": "1.4.0"
+      "versionCode": 9,
+      "versionName": "1.9.0"
     },
     "productFlavors": {
       "demo": {
-        "versionCode": 4,
-        "versionName": "1.4.0-demo"
+        "versionCode": 9,
+        "versionName": "1.9.0-demo"
       },
       "full": {
         "versionCode": 1,
@@ -33,7 +33,7 @@
       }
     },
     "adaptiveIcon": { 
-      "foregroundImage": "./assets/images/icon2.png",
+      "foregroundImage": "./assets/images/icon.png",
       "backgroundColor": "#000000"
     }
   }

@@ -1,7 +1,7 @@
 /*
 Title: RPN Calculator
 Author: Jonathan Feaster, JonFeaster.com
-Date: 2021-12-21
+Date: 2021-12-22
 */
 
 import React from 'react';
@@ -200,6 +200,9 @@ export default function App() {
       flexDirection: 'column',
       flex: 1
     },
+    separator: {
+      marginTop: 5
+    },
     row: {
       flexDirection: 'row',
       flex: 1
@@ -221,10 +224,9 @@ export default function App() {
     },
     resultText: {
       color: '#59a7e5',
-      marginRight: 15,
-      marginBottom: 10,
-      marginLeft: 15,
       fontSize: 35,
+      marginRight: 15,
+      marginLeft: 15,
       alignSelf: 'flex-end',
       flexWrap: 'wrap'
     },
@@ -282,11 +284,13 @@ export default function App() {
             </TouchableOpacity>
           </View>
           <View style={styles.history}>
-            <Text style={styles.historyText}>{formatNumbers(lastNumber)}</Text>
+            <Text style={styles.historyText} numberOfLines={4} adjustsFontSizeToFit={true} minimumFontScale={0.75}>{formatNumbers(lastNumber)}</Text>
+            <View style={styles.separator} />
           </View>
         </View>
         <View style={styles.result}>
-          <Text style={styles.resultText}>{formatNumbers(currentNumber)}</Text>
+          <Text style={styles.resultText} numberOfLines={4} adjustsFontSizeToFit={true} minimumFontScale={0.6}>{formatNumbers(currentNumber)}</Text>
+          <View style={styles.separator} />
         </View>
       </View>
       <View style={styles.keypad}>

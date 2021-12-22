@@ -55,5 +55,6 @@ web-build/
 dist/
 
 # Custom
+/builds
 /tmp
 package-lock.json

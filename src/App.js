@@ -1,7 +1,7 @@
 /*
 Title: RPN Calculator
 Author: Jonathan Feaster, JonFeaster.com
-Date: 2021-12-22
+Date: 2021-12-27
 */
 
 import React from 'react';
@@ -98,6 +98,10 @@ export default function App() {
   function calc() {
     let expression = currentNumber.toString();
     let result = RPN(formatExpression(expression)).toString();
+    const resultTruncated = result.match(/^-?\d+(?:\.\d{0,10})?/); // truncate decimal to 10th digit
+    if (resultTruncated) {
+      result = resultTruncated.toString();
+    }
     setCurrentNumber(result);
     return
   }
